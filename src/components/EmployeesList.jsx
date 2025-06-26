@@ -29,7 +29,7 @@ function EmployeesList() {
             <ListItem
               key={employee.id}
               secondaryAction={
-                <ButtonGroup size="small">
+                <ButtonGroup size="small" variant="contained">
                   <Button color="success">Rate</Button>
                   <Button>View</Button>
                   <Button>
