@@ -1,8 +1,11 @@
 import "./app.css";
+import EmployeesList from "./components/employeesList";
 function App() {
   return (
     <div className="background">
-      <div className="container"></div>
+      <div className="container">
+        <EmployeesList />
+      </div>
     </div>
   );
 }
