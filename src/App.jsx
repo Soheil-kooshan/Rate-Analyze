@@ -1,6 +1,9 @@
-import { Button } from "@mui/material";
-
+import "./app.css";
 function App() {
-  return <div></div>;
+  return (
+    <div className="background">
+      <div className="container"></div>
+    </div>
+  );
 }
 export default App;

@@ -1,0 +1,31 @@
+:root {
+  --background-color: #222831;
+  --surface: #31363f;
+  --primary: #76abae;
+  --secondary: #eeeeee;
+}
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.background {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 70%;
+  height: 80%;
+  background-color: var(--surface);
+  border-radius: 0.6rem;
+}
