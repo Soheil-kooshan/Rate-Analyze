@@ -1,13 +1,19 @@
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "./app.css";
+import RatingEmployee from "./components/RatingEmployee";
 import EmployeesList from "./components/employeesList";
 function App() {
   return (
-    <div className="background">
-      <h1>Rate & Analyze</h1>
-      <div className="container">
-        <EmployeesList />
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <div className="background">
+        <h1>Rate & Analyze</h1>
+        <div className="container">
+          <EmployeesList />
+          <RatingEmployee />
+        </div>
       </div>
-    </div>
+    </LocalizationProvider>
   );
 }
 export default App;
