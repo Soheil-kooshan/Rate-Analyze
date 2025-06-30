@@ -3,6 +3,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "./app.css";
 import RatingEmployee from "./components/RatingEmployee";
 import EmployeesList from "./components/employeesList";
+import NewEmployee from "./components/NewEmployee";
 function App() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -10,6 +11,7 @@ function App() {
         <h1>Rate & Analyze</h1>
         <div className="container">
           <EmployeesList />
+          <NewEmployee />
           <RatingEmployee />
         </div>
       </div>
