@@ -21,8 +21,13 @@ h1 {
   padding-bottom: 1.5rem;
 }
 
+h2 {
+  padding-bottom: 1rem;
+}
+
 .background {
   width: 100vw;
+  min-height: 100vh;
   background-color: var(--background-color);
   display: flex;
   flex-direction: column;
