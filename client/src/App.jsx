@@ -4,6 +4,7 @@ import "./app.css";
 import RatingEmployee from "./components/RatingEmployee";
 import EmployeesList from "./components/employeesList";
 import NewEmployee from "./components/NewEmployee";
+import RateChart from "./components/RateChart";
 function App() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -12,7 +13,8 @@ function App() {
         <div className="container">
           <EmployeesList />
           <NewEmployee />
-          <RatingEmployee />
+          {/* <RatingEmployee /> */}
+          <RateChart />
         </div>
       </div>
     </LocalizationProvider>

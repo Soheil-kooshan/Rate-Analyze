@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { useState } from "react";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import Typography from "@mui/material/Typography";
 
 function RatingEmployee() {
   const [value, setValue] = useState(null);
@@ -18,9 +18,31 @@ function RatingEmployee() {
       }}
     >
       <h2>Rate:</h2>
+      <Typography>behavior:</Typography>
       <Rating
-        sx={{ paddingY: 2 }}
-        size="large"
+        sx={{ paddingY: 1 }}
+        size="medium"
+        name="simple-controlled"
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+      />
+      <Typography>Discipline:</Typography>
+      <Rating
+        sx={{ paddingY: 1 }}
+        size="medium"
+        name="simple-controlled"
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+      />
+      <Typography>Quality:</Typography>
+      <Rating
+        aria-label="quality"
+        sx={{ paddingY: 1 }}
+        size="medium"
         name="simple-controlled"
         value={value}
         onChange={(event, newValue) => {
