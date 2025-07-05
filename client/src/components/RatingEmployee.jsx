@@ -7,7 +7,9 @@ import Typography from "@mui/material/Typography";
 import BarChartIcon from "@mui/icons-material/BarChart";
 
 function RatingEmployee() {
-  const [value, setValue] = useState(null);
+  const [behavior, setBehavior] = useState(null);
+  const [quality, setQuality] = useState(null);
+  const [dicipline, setDicipine] = useState(null);
 
   const style = {
     display: "flex",
@@ -36,9 +38,9 @@ function RatingEmployee() {
           sx={{ paddingY: 1 }}
           size="medium"
           name="simple-controlled"
-          value={value}
+          value={behavior}
           onChange={(event, newValue) => {
-            setValue(newValue);
+            setBehavior(newValue);
           }}
         />
       </Box>
@@ -48,9 +50,9 @@ function RatingEmployee() {
           sx={{ paddingY: 1 }}
           size="medium"
           name="simple-controlled"
-          value={value}
+          value={dicipline}
           onChange={(event, newValue) => {
-            setValue(newValue);
+            setDicipine(newValue);
           }}
         />
       </Box>
@@ -61,9 +63,9 @@ function RatingEmployee() {
           sx={{ paddingY: 1 }}
           size="medium"
           name="simple-controlled"
-          value={value}
+          value={quality}
           onChange={(event, newValue) => {
-            setValue(newValue);
+            setQuality(newValue);
           }}
         />
       </Box>
