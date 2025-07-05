@@ -13,8 +13,8 @@ function App() {
         <div className="container">
           <EmployeesList />
           <NewEmployee />
-          {/* <RatingEmployee /> */}
-          <RateChart />
+          <RatingEmployee />
+          {/* <RateChart /> */}
         </div>
       </div>
     </LocalizationProvider>

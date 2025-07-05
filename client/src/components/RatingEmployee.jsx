@@ -49,12 +49,8 @@ function RatingEmployee() {
           setValue(newValue);
         }}
       />
-      <DatePicker label="Date Picker" format="YYYY/MM/DD" />
-      <Button
-        sx={{ width: "6rem", marginTop: "1rem" }}
-        color="success"
-        variant="contained"
-      >
+      <DatePicker label="Date Picker" format="YYYY/MM/DD" sx={{ mt: 1 }} />
+      <Button sx={{ width: "6rem", mt: 1 }} color="success" variant="contained">
         Register
       </Button>
     </Box>

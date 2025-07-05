@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
 
 function RateChart() {
   const [RadioValue, setRadioValue] = useState("total");
@@ -38,10 +39,10 @@ function RateChart() {
             label="One Month (detailed)"
           ></FormControlLabel>
         </RadioGroup>
+
         <Select
           sx={{ marginTop: "0.5rem" }}
           size="small"
-          label="Month"
           value={monthValue}
           onChange={handleMonthChange}
           disabled={RadioValue !== "single"}

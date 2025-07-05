@@ -1,6 +1,6 @@
 :root {
   --background-color: #222831;
-  --surface: #31363f;
+  --surface: #eeeeee;
   --primary: #76abae;
   --secondary: #eeeeee;
 }
@@ -41,7 +41,7 @@ h2 {
   border-radius: 0.6rem;
   display: flex;
   flex-direction: column;
-  color: var(--secondary);
+  color: #222831;
   padding: 1rem;
   margin-bottom: 3rem;
 }
