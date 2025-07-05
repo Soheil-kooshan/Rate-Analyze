@@ -6,6 +6,10 @@ import Delete from "@mui/icons-material/Delete";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
+import ShowChartIcon from "@mui/icons-material/ShowChart";
+import Chip from "@mui/material/Chip";
+import Box from "@mui/material/Box";
+
 import "../app.css";
 
 function EmployeesList() {
@@ -15,10 +19,10 @@ function EmployeesList() {
   };
 
   const employees = [
-    { id: 1, name: "Ali Rostami", Job: "designer" },
-    { id: 2, name: "Sahand Kooshan", Job: "Tester" },
-    { id: 3, name: "Iraj Pakzad", Job: "Analyst" },
-    { id: 4, name: "Reza Ataei", Job: "Back-End" },
+    { id: 1, name: "Ali Rostami", job: "designer" },
+    { id: 2, name: "Sahand Kooshan", job: "Tester" },
+    { id: 3, name: "Iraj Pakzad", job: "Analyst" },
+    { id: 4, name: "Reza Ataei", job: "Back-End" },
   ];
 
   return (
@@ -31,7 +35,10 @@ function EmployeesList() {
               secondaryAction={
                 <ButtonGroup size="small" variant="contained">
                   <Button color="success">Rate</Button>
-                  <Button>View</Button>
+                  <Button>
+                    View
+                    <ShowChartIcon fontSize="small" />
+                  </Button>
                   <Button>
                     <Delete />
                   </Button>
@@ -39,7 +46,12 @@ function EmployeesList() {
               }
             >
               <ListItemText
-                primary={`${employee.id}  ${employee.name} (${employee.Job})`}
+                primary={
+                  <Box>
+                    {employee.id} {employee.name}{" "}
+                    <Chip label={employee.job} size="small" variant="filled" />
+                  </Box>
+                }
               />
             </ListItem>
             <Divider variant="middle" />

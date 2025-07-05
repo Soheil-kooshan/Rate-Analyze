@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
 
 function RateChart() {
   const [RadioValue, setRadioValue] = useState("total");
