@@ -33,7 +33,7 @@ function RatingEmployee() {
         <BarChartIcon fontSize="small" />
       </h2>
       <Box sx={style}>
-        <Typography>behavior</Typography>
+        <Typography>Behavior</Typography>
         <Rating
           sx={{ paddingY: 1 }}
           size="medium"
