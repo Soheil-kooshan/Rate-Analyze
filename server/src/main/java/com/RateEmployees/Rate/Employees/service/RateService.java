@@ -21,10 +21,10 @@ public class RateService {
         return rateRepo.findByEmployee_Id(emp_id);
     }
 
-    public List<Rate> getByMonthAndYear(int month, int year) {
+    public List<Rate> getByMonthAndYear(int empId , int year ,int month) {
         LocalDate start = LocalDate.of(year, month, 1);
         LocalDate end = start.plusMonths(1);
-        return rateRepo.findByMonthAndYear(start, end);
+        return rateRepo.findByMonthAndYearAndEmployee_Id(empId ,start, end);
     }
 
     public String registerRate(Rate r){

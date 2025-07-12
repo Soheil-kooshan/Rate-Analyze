@@ -1,6 +1,7 @@
 package com.RateEmployees.Rate.Employees.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,12 +20,12 @@ public class Rate {
     @Column(name = "date" , nullable = false )
     private LocalDate date;
 
-    @Column(name = "rate" , nullable = false)
     @Embedded
     private ScoreSet rate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employeeId" , nullable = false)
+    @JsonIgnore
     private Employee employee;
 
 }

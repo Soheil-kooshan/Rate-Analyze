@@ -21,8 +21,8 @@ public class RateControl {
     }
 
     @GetMapping("/getByMonthAndYear")
-    public List<Rate> getByMonthAndYear(@RequestParam int year , int month){
-        return rateService.getByMonthAndYear(year , month);
+    public List<Rate> getByMonthAndYear(@RequestParam int empId , int year , int month){
+        return rateService.getByMonthAndYear(empId ,year , month);
     }
 
     @PostMapping("/RegisterRate")
