@@ -25,6 +25,4 @@ public class EmployeeControl{
     public Employee addEmployee(@RequestBody Employee employee){
          return employeeService.addEmployee(employee);
     }
-
-
 }

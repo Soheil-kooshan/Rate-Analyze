@@ -9,7 +9,6 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "Rate")
-
 public class Rate {
 
     @Id
