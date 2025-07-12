@@ -20,9 +20,10 @@ public class Rate {
     private LocalDate date;
 
     @Column(name = "rate" , nullable = false)
-    private short rate;
+    @Embedded
+    private ScoreSet rate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employeeId" , nullable = false)
     private Employee employee;
 

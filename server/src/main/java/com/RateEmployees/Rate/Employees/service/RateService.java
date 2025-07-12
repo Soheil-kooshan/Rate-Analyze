@@ -4,7 +4,6 @@ package com.RateEmployees.Rate.Employees.service;
 import com.RateEmployees.Rate.Employees.entity.Rate;
 import com.RateEmployees.Rate.Employees.repository.RateRepo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,7 +18,7 @@ public class RateService {
     private final RateRepo rateRepo;
 
     public List<Rate> getAllRates(int emp_id){
-        return rateRepo.findByEmployee(emp_id);
+        return rateRepo.findByEmployee_Id(emp_id);
     }
 
     public List<Rate> getByMonthAndYear(int month, int year) {

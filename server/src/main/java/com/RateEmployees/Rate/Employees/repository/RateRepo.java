@@ -13,9 +13,9 @@ import java.util.Optional;
 @Repository
 public interface RateRepo extends JpaRepository<Rate , Integer> {
 
-    List<Rate> findByEmployee(int Employee);
+    List<Rate> findByEmployee_Id(int employeeId);
 
-    @Query("SELECT r FROM Rate WHERE r.date >= :start AND r.date < :end")
+    @Query("SELECT r FROM Rate r WHERE r.date >= :start AND r.date < :end")
     List<Rate> findByMonthAndYear(@Param("start") LocalDate start , @Param("end")LocalDate end);
 
     Optional<Rate> findByEmployee_IdAndDate(int employeeId, LocalDate date);

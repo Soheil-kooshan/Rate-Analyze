@@ -8,8 +8,8 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 
 function RatingEmployee() {
   const [behavior, setBehavior] = useState(null);
-  const [quality, setQuality] = useState(null);
   const [dicipline, setDicipine] = useState(null);
+  const [quality, setQuality] = useState(null);
 
   const style = {
     display: "flex",
