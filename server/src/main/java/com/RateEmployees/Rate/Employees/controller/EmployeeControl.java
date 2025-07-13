@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173",allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:5174")
 @RequestMapping("/employee")
 @RequiredArgsConstructor
 public class EmployeeControl{
