@@ -5,9 +5,26 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useState } from "react";
 import Box from "@mui/material/Box";
+import { getAllEmployees, AddNewEmployee } from "../services/employeeService";
 
-function NewEmployee() {
+function NewEmployee({ setEmployees }) {
   const [open, setOpen] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [job, setJob] = useState("");
+
+  const employee = {
+    fullName: `${firstName} ${lastName}`,
+    job: job,
+  };
+
+  async function handleAddEmployee() {
+    const res = await AddNewEmployee(employee);
+    const updatedList = await getAllEmployees();
+    console.log(res);
+    setOpen(false);
+    setEmployees(updatedList);
+  }
 
   function handleClickOpen() {
     setOpen(true);
@@ -24,34 +41,44 @@ function NewEmployee() {
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add Employee</DialogTitle>
-        <form>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              padding: "1.5rem",
-              gap: "1rem",
-            }}
-          >
-            <TextField
-              required
-              label="First Name"
-              id="firstName"
-              variant="outlined"
-            />
-            <TextField
-              required
-              label="Last Name"
-              id="lastName"
-              variant="outlined"
-            />
-            <TextField required label="Job" id="job" variant="outlined" />
-            <DialogActions>
-              <Button onClick={handleClose}>CANCEL</Button>
-              <Button type="submit">ADD</Button>
-            </DialogActions>
-          </Box>
-        </form>
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            padding: "1.5rem",
+            gap: "1rem",
+          }}
+        >
+          <TextField
+            value={firstName}
+            required
+            label="First Name"
+            id="firstName"
+            variant="outlined"
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <TextField
+            value={lastName}
+            required
+            label="Last Name"
+            id="lastName"
+            variant="outlined"
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          <TextField
+            value={job}
+            required
+            label="Job"
+            id="job"
+            variant="outlined"
+            onChange={(e) => setJob(e.target.value)}
+          />
+          <DialogActions>
+            <Button onClick={handleClose}>CANCEL</Button>
+            <Button onClick={handleAddEmployee}>ADD</Button>
+          </DialogActions>
+        </Box>
       </Dialog>
     </div>
   );

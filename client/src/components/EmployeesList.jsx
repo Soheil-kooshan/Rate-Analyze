@@ -9,21 +9,24 @@ import Divider from "@mui/material/Divider";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 import Chip from "@mui/material/Chip";
 import Box from "@mui/material/Box";
+import { useEffect } from "react";
+import { getAllEmployees } from "../services/employeeService";
 
 import "../app.css";
 
-function EmployeesList() {
+function EmployeesList({ employees, setEmployees }) {
+  useEffect(() => {
+    async function getEmployees() {
+      const employees = await getAllEmployees();
+      setEmployees(employees);
+    }
+    getEmployees();
+  }, []);
+
   const style = {
     py: 0,
     width: "100%",
   };
-
-  const employees = [
-    { id: 1, name: "Ali Rostami", job: "designer" },
-    { id: 2, name: "Sahand Kooshan", job: "Tester" },
-    { id: 3, name: "Iraj Pakzad", job: "Analyst" },
-    { id: 4, name: "Reza Ataei", job: "Back-End" },
-  ];
 
   return (
     <div>
@@ -48,7 +51,7 @@ function EmployeesList() {
               <ListItemText
                 primary={
                   <Box>
-                    {employee.id} {employee.name}{" "}
+                    {employee.id} {employee.fullName}{" "}
                     <Chip label={employee.job} size="small" variant="filled" />
                   </Box>
                 }
