@@ -16,8 +16,8 @@ function App() {
         <div className="container">
           <EmployeesList employees={employees} setEmployees={setEmployees} />
           <NewEmployee setEmployees={setEmployees} />
-          <RatingEmployee />
-          {/* <RateChart /> */}
+          {/* <RatingEmployee /> */}
+          <RateChart />
         </div>
       </div>
     </LocalizationProvider>
