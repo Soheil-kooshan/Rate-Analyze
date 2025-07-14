@@ -8,16 +8,22 @@ import RateChart from "./components/RateChart";
 import { useState } from "react";
 function App() {
   const [employees, setEmployees] = useState([]);
+  const [empIdForChart, setEmpIdForChart] = useState(null);
+  const [empIdForRate, setEmpIdForRate] = useState(null);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className="background">
         <h1>Rate & Analyze</h1>
         <div className="container">
-          <EmployeesList employees={employees} setEmployees={setEmployees} />
+          <EmployeesList
+            employees={employees}
+            setEmployees={setEmployees}
+            setEmpIdForChart={setEmpIdForChart}
+          />
           <NewEmployee setEmployees={setEmployees} />
           {/* <RatingEmployee /> */}
-          <RateChart />
+          {empIdForChart && <RateChart empId={empIdForChart} />}
         </div>
       </div>
     </LocalizationProvider>

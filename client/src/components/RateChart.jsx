@@ -1,5 +1,6 @@
 import { LineChart } from "@mui/x-charts";
-import { useState } from "react";
+import { BarChart } from "@mui/x-charts";
+import { useEffect, useState } from "react";
 import {
   RadioGroup,
   FormControlLabel,
@@ -9,51 +10,85 @@ import {
 } from "@mui/material";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { getRates } from "../services/rateService";
+import { getTotalRates, getOneMonthRates } from "../services/rateService";
 
-function RateChart() {
+function RateChart({ empId }) {
   const [RadioValue, setRadioValue] = useState("total");
   const [monthValue, setMonthValue] = useState(1);
   const [yearValue, setYearValue] = useState(2025);
-
+  const [totalDates, setTotalDates] = useState([]);
+  const [singleDates, setSingleDates] = useState([]);
   const [totalRates, setTotalRates] = useState([]);
-  const [dates, setDates] = useState([]);
+  const [singleRates, setSingleRates] = useState({
+    behavior: [],
+    dicipline: [],
+    quality: [],
+  });
 
-  async function getTotalRate() {
-    const res = await getRates(1);
-    const totalArray = [];
+  useEffect(() => {
+    handleTotalRates(empId);
+  }, []);
+
+  async function handleTotalRates(empId) {
+    const res = await getTotalRates(empId);
+    const ratesArray = [];
     const datesArray = [];
     console.log(res);
-    if (res !== []) {
+    if (res && res.length > 0) {
       res.forEach((item) => {
         const average = (
-          (item.rate.behavior + item.rate.quality + item.rate.dicipline) /
+          (item.rate.behavior + item.rate.dicipline + item.rate.quality) /
           3
         ).toFixed(1);
-        totalArray.push(average);
+        ratesArray.push(average);
         datesArray.push(item.date);
       });
     }
+    setTotalDates(datesArray);
+    setTotalRates(ratesArray);
+  }
 
-    setDates(datesArray);
-    setTotalRates(totalArray);
+  async function handleOneMonthRates(empId, year, month) {
+    const res = await getOneMonthRates(empId, year, month);
+    const ratesArray = {
+      behavior: [],
+      dicipline: [],
+      quality: [],
+    };
+    const datesArray = [];
+
+    if (res && res.length > 0) {
+      res.forEach((item) => {
+        ratesArray.behavior.push(item.rate.behavior),
+          ratesArray.dicipline.push(item.rate.dicipline),
+          ratesArray.quality.push(item.rate.quality),
+          datesArray.push(item.date);
+      });
+    }
+    setSingleRates(ratesArray);
+    setSingleDates(datesArray);
   }
 
   function handleMonthChange(e) {
+    const month = e.target.value;
     setMonthValue(e.target.value);
+    handleOneMonthRates(empId, yearValue, month);
   }
 
   function handleYearChange(e) {
+    const year = e.target.value;
     setYearValue(e.target.value);
+    handleOneMonthRates(empId, year, monthValue);
   }
 
   function handleRadioChange(e) {
     setRadioValue(e.target.value);
-    getTotalRate();
+    if (e.target.value === "total") {
+      handleTotalRates(empId);
+    } else {
+      handleOneMonthRates(empId, yearValue, monthValue);
+    }
   }
-
-  const uData = [3, 4, 4];
-  const xLabels = ["january", "september", "july"];
 
   return (
     <div>
@@ -103,20 +138,39 @@ function RateChart() {
           </Select>
         </FormControl>
       </FormControl>
-
-      <LineChart
-        series={[{ data: totalRates, label: "employee 1" }]}
-        xAxis={[{ scaleType: "point", data: dates }]}
-        yAxis={[
-          {
-            min: 0,
-            max: 5,
-            label: "rate",
-          },
-        ]}
-        height={300}
-        sx={{ p: 2 }}
-      />
+      {RadioValue === "total" ? (
+        <LineChart
+          series={[{ data: totalRates, label: "employee 1" }]}
+          xAxis={[{ scaleType: "point", data: totalDates }]}
+          yAxis={[
+            {
+              min: 0,
+              max: 5,
+              label: "rate",
+            },
+          ]}
+          height={300}
+          sx={{ p: 2 }}
+        />
+      ) : (
+        <BarChart
+          xAxis={[{ data: singleDates }]}
+          series={[
+            { data: singleRates.behavior, label: "behavior" },
+            { data: singleRates.dicipline, label: "dicipline" },
+            { data: singleRates.quality, label: "quality" },
+          ]}
+          yAxis={[
+            {
+              min: 0,
+              max: 5,
+              label: "rate",
+            },
+          ]}
+          height={300}
+          sx={{ p: 2 }}
+        />
+      )}
     </div>
   );
 }
