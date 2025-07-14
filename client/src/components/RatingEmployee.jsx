@@ -5,11 +5,20 @@ import { useState } from "react";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import Typography from "@mui/material/Typography";
 import BarChartIcon from "@mui/icons-material/BarChart";
+import { registerRate } from "../services/rateService";
 
-function RatingEmployee() {
+function RatingEmployee({ empId }) {
   const [behavior, setBehavior] = useState(null);
   const [dicipline, setDicipine] = useState(null);
   const [quality, setQuality] = useState(null);
+  const [date, setDate] = useState(null);
+  const [registerMsg, setRegisterMsg] = useState("");
+
+  async function handleRegister() {
+    const res = await registerRate(empId, date, behavior, dicipline, quality);
+    const message = await res.text();
+    setRegisterMsg(message);
+  }
 
   const style = {
     display: "flex",
@@ -31,6 +40,9 @@ function RatingEmployee() {
       <h2>
         Rate
         <BarChartIcon fontSize="small" />
+        <Typography sx={{ fontStyle: "italic", fontSize: 12, color: "grey" }}>
+          To #{empId}
+        </Typography>
       </h2>
       <Box sx={style}>
         <Typography>Behavior</Typography>
@@ -69,10 +81,26 @@ function RatingEmployee() {
           }}
         />
       </Box>
-      <DatePicker label="Date Picker" format="YYYY/MM/DD" sx={{ mt: 1 }} />
-      <Button sx={{ width: "6rem", mt: 1 }} color="success" variant="contained">
+      <DatePicker
+        label="Date Picker"
+        format="YYYY/MM/DD"
+        sx={{ mt: 1, minWidth: "10rem" }}
+        value={date}
+        onChange={(value) => {
+          setDate(value);
+        }}
+      />
+      <Button
+        sx={{ width: "6rem", mt: 1 }}
+        color="success"
+        variant="contained"
+        onClick={handleRegister}
+      >
         Register
       </Button>
+      <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
+        {registerMsg}
+      </Alert>
     </Box>
   );
 }

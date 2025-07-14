@@ -14,7 +14,12 @@ import { getAllEmployees } from "../services/employeeService";
 
 import "../app.css";
 
-function EmployeesList({ employees, setEmployees, setEmpIdForChart }) {
+function EmployeesList({
+  employees,
+  setEmployees,
+  setEmpIdForChart,
+  setEmpIdForRate,
+}) {
   useEffect(() => {
     async function getEmployees() {
       const employees = await getAllEmployees();
@@ -37,10 +42,19 @@ function EmployeesList({ employees, setEmployees, setEmpIdForChart }) {
               key={employee.id}
               secondaryAction={
                 <ButtonGroup size="small" variant="contained">
-                  <Button color="success">Rate</Button>
+                  <Button
+                    color="success"
+                    onClick={() => {
+                      setEmpIdForRate(employee.id);
+                      setEmpIdForChart(null);
+                    }}
+                  >
+                    Rate
+                  </Button>
                   <Button
                     onClick={() => {
                       setEmpIdForChart(employee.id);
+                      setEmpIdForRate(null);
                     }}
                   >
                     View

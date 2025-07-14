@@ -20,9 +20,10 @@ function App() {
             employees={employees}
             setEmployees={setEmployees}
             setEmpIdForChart={setEmpIdForChart}
+            setEmpIdForRate={setEmpIdForRate}
           />
           <NewEmployee setEmployees={setEmployees} />
-          {/* <RatingEmployee /> */}
+          {empIdForRate && <RatingEmployee empId={empIdForRate} />}
           {empIdForChart && <RateChart empId={empIdForChart} />}
         </div>
       </div>

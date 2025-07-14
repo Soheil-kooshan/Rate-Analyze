@@ -30,6 +30,7 @@ public class RateService {
     public String registerRate(Rate r){
 
         LocalDate date = r.getDate();
+        System.out.println(r);
         int empId = r.getEmployee().getId();
         Optional<Rate> existing = rateRepo.findByEmployee_IdAndDate(empId , date);
 

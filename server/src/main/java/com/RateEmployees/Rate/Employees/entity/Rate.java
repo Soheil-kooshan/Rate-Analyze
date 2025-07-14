@@ -2,6 +2,7 @@ package com.RateEmployees.Rate.Employees.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,7 +26,7 @@ public class Rate {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employeeId" , nullable = false)
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Employee employee;
 
 }
