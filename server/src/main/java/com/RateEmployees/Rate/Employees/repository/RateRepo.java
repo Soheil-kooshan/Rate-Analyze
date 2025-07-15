@@ -12,10 +12,12 @@ import java.util.Optional;
 @Repository
 public interface RateRepo extends JpaRepository<Rate , Integer> {
 
-    List<Rate> findByEmployee_Id(int employeeId);
+    List<Rate> findByEmployee_IdOrderByDateAsc(int employeeId);
 
     @Query("SELECT r FROM Rate r WHERE r.employee.id = :empId AND r.date >= :start AND r.date < :end")
-    List<Rate> findByMonthAndYearAndEmployee_Id(@Param("empId") int empId , @Param("start") LocalDate start , @Param("end")LocalDate end);
+    List<Rate> findByMonthAndYearAndEmployee_IdOrderByDateAsc(@Param("empId") int empId , @Param("start") LocalDate start , @Param("end")LocalDate end);
 
     Optional<Rate> findByEmployee_IdAndDate(int employeeId, LocalDate date);
+
+
 }

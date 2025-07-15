@@ -18,13 +18,13 @@ public class RateService {
     private final RateRepo rateRepo;
 
     public List<Rate> getAllRates(int emp_id){
-        return rateRepo.findByEmployee_Id(emp_id);
+        return rateRepo.findByEmployee_IdOrderByDateAsc(emp_id);
     }
 
     public List<Rate> getByMonthAndYear(int empId , int year ,int month) {
         LocalDate start = LocalDate.of(year, month, 1);
         LocalDate end = start.plusMonths(1);
-        return rateRepo.findByMonthAndYearAndEmployee_Id(empId ,start, end);
+        return rateRepo.findByMonthAndYearAndEmployee_IdOrderByDateAsc(empId ,start, end);
     }
 
     public String registerRate(Rate r){
@@ -45,6 +45,7 @@ public class RateService {
 
         rateRepo.save(rate);
         return "Successfully added!";
+
     }
 
 }
