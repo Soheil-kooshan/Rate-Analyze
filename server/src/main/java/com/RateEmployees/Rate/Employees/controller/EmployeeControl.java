@@ -25,4 +25,9 @@ public class EmployeeControl{
     public Employee addEmployee(@RequestBody Employee employee){
          return employeeService.addEmployee(employee);
     }
+
+    @GetMapping("/DeleteEmployee")
+    public String DeleteEmployee(@RequestParam int id){
+        return employeeService.DeleteEmployee(id);
+    }
 }
