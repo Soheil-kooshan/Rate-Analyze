@@ -5,19 +5,35 @@ import { useState } from "react";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import Typography from "@mui/material/Typography";
 import BarChartIcon from "@mui/icons-material/BarChart";
+import Snackbar from "@mui/material/Snackbar";
 import { registerRate } from "../services/rateService";
+import Message from "./Message";
 
 function RatingEmployee({ empId }) {
   const [behavior, setBehavior] = useState(null);
   const [dicipline, setDicipine] = useState(null);
   const [quality, setQuality] = useState(null);
   const [date, setDate] = useState(null);
-  const [registerMsg, setRegisterMsg] = useState("");
+  const [message, setMessage] = useState("");
+  const [severity, setSeverity] = useState("success");
+  const [msgOpen, setMsgOpen] = useState(false);
 
   async function handleRegister() {
-    const res = await registerRate(empId, date, behavior, dicipline, quality);
-    const message = await res.text();
-    setRegisterMsg(message);
+    try {
+      const res = await registerRate(empId, date, behavior, dicipline, quality);
+      const message = await res.text();
+      setMessage(message);
+      if (message.includes("Successfully")) {
+        setSeverity("success");
+      } else {
+        console.log(message.includes("Successfully"));
+        setSeverity("error");
+      }
+    } catch (error) {
+      setMessage("Something went Wrong!");
+      setSeverity("error");
+    }
+    setMsgOpen(true);
   }
 
   const style = {
@@ -98,9 +114,13 @@ function RatingEmployee({ empId }) {
       >
         Register
       </Button>
-      <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
-        {registerMsg}
-      </Alert>
+      <Message
+        open={msgOpen}
+        message={message}
+        severity={severity}
+        onClose={() => setMsgOpen(false)}
+        duration={4000}
+      />
     </Box>
   );
 }

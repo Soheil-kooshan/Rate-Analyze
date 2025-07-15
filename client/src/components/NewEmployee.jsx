@@ -6,12 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import { getAllEmployees, AddNewEmployee } from "../services/employeeService";
+import Message from "./Message";
 
 function NewEmployee({ setEmployees }) {
   const [open, setOpen] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [job, setJob] = useState("");
+  const [message, setMessage] = useState("");
+  const [severity, setSeverity] = useState("success");
+  const [msgOpen, setMsgOpen] = useState(false);
 
   const employee = {
     fullName: `${firstName} ${lastName}`,
@@ -19,11 +23,18 @@ function NewEmployee({ setEmployees }) {
   };
 
   async function handleAddEmployee() {
-    const res = await AddNewEmployee(employee);
-    const updatedList = await getAllEmployees();
-    console.log(res);
-    setOpen(false);
-    setEmployees(updatedList);
+    try {
+      const res = await AddNewEmployee(employee);
+      const updatedList = await getAllEmployees();
+      setOpen(false);
+      setEmployees(updatedList);
+      setMessage("Employee Added Successfully!");
+      setSeverity("success");
+    } catch (error) {
+      setMessage("Somthing went wrong!");
+      setSeverity("success");
+    }
+    setMsgOpen(true);
   }
 
   function handleClickOpen() {
@@ -80,6 +91,15 @@ function NewEmployee({ setEmployees }) {
           </DialogActions>
         </Box>
       </Dialog>
+      <Message
+        message={message}
+        open={msgOpen}
+        severity={severity}
+        duration={3000}
+        onClose={() => {
+          setMsgOpen(false);
+        }}
+      />
     </div>
   );
 }
