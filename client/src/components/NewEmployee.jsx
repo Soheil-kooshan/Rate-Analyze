@@ -5,7 +5,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useState } from "react";
 import Box from "@mui/material/Box";
-import { getAllEmployees, AddNewEmployee } from "../services/employeeService";
+import { getAllEmployees, addNewEmployee } from "../services/employeeService";
 import Message from "./Message";
 
 function NewEmployee({ setEmployees }) {
@@ -24,7 +24,7 @@ function NewEmployee({ setEmployees }) {
 
   async function handleAddEmployee() {
     try {
-      const res = await AddNewEmployee(employee);
+      const res = await addNewEmployee(employee);
       const updatedList = await getAllEmployees();
       setOpen(false);
       setEmployees(updatedList);

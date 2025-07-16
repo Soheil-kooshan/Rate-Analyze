@@ -4,7 +4,7 @@ export async function getAllEmployees() {
   return res.json();
 }
 
-export async function AddNewEmployee(employee) {
+export async function addNewEmployee(employee) {
   const res = await fetch("http://localhost:8080/employee/AddEmployee", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -12,4 +12,13 @@ export async function AddNewEmployee(employee) {
   });
 
   return res.json();
+}
+
+export async function deleteEmployee(id) {
+  const res = await fetch(
+    `http://localhost:8080/employee/DeleteEmployee?id=${id}`,
+    { method: "DELETE" }
+  );
+
+  return res;
 }

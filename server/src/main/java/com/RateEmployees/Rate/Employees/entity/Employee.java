@@ -25,7 +25,7 @@ public class Employee {
     @Column(name = "job" ,nullable = false )
     private String job;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee" ,cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Rate> rates;
 
 }
