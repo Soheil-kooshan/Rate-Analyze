@@ -30,6 +30,10 @@ function NewEmployee({ setEmployees }) {
       setEmployees(updatedList);
       setMessage("Employee Added Successfully!");
       setSeverity("success");
+
+      setFirstName("");
+      setLastName("");
+      setJob("");
     } catch (error) {
       setMessage("Somthing went wrong!");
       setSeverity("success");
