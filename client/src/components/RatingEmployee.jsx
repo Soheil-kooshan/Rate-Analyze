@@ -5,7 +5,6 @@ import { useState } from "react";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import Typography from "@mui/material/Typography";
 import BarChartIcon from "@mui/icons-material/BarChart";
-import Snackbar from "@mui/material/Snackbar";
 import { registerRate } from "../services/rateService";
 import Message from "./Message";
 
@@ -19,20 +18,36 @@ function RatingEmployee({ empId }) {
   const [msgOpen, setMsgOpen] = useState(false);
 
   async function handleRegister() {
-    try {
-      const res = await registerRate(empId, date, behavior, dicipline, quality);
-      const message = await res.text();
-      setMessage(message);
-      if (message.includes("Successfully")) {
-        setSeverity("success");
-      } else {
-        console.log(message.includes("Successfully"));
+    if (
+      behavior !== null &&
+      dicipline !== null &&
+      quality !== null &&
+      date !== null
+    ) {
+      try {
+        const res = await registerRate(
+          empId,
+          date,
+          behavior,
+          dicipline,
+          quality
+        );
+        const message = await res.text();
+        setMessage(message);
+        if (message.includes("Successfully")) {
+          setSeverity("success");
+        } else {
+          setSeverity("error");
+        }
+      } catch (error) {
+        setMessage("Something went Wrong!");
         setSeverity("error");
       }
-    } catch (error) {
-      setMessage("Something went Wrong!");
-      setSeverity("error");
+    } else {
+      setMessage("Fields can NOT be Empty!");
+      setSeverity("warning");
     }
+
     setMsgOpen(true);
   }
 
