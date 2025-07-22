@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "employee_tbl")
 @AllArgsConstructor
+@NoArgsConstructor
 public class Employee {
 
     @Id
