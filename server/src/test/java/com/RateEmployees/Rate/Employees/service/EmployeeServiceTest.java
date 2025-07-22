@@ -3,12 +3,12 @@ package com.RateEmployees.Rate.Employees.service;
 
 import com.RateEmployees.Rate.Employees.entity.Employee;
 import com.RateEmployees.Rate.Employees.repository.EmployeeRepo;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import static org.mockito.Mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -45,5 +45,16 @@ public class EmployeeServiceTest {
         assertEquals("soheil kooshan" , res.get(0).getFullName());
         assertEquals("ali alipoor" , res.get(1).getFullName());
         assertFalse(res.isEmpty());
+    }
+
+    @Test
+    void TestDeleteEmployeeById_ReturnsNothing(){
+
+        int id = 1;
+
+        employeeService.DeleteEmployee(id);
+
+        verify(employeeRepo , times(1)).deleteById(id);
+
     }
 }
