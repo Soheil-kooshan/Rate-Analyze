@@ -4,6 +4,7 @@ package com.RateEmployees.Rate.Employees.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "Rate")
+@AllArgsConstructor
 public class Rate {
 
     @Id
